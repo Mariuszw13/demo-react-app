@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 const MainPage = ({ className}) => {
     const [items, setItems] = useState([]);
-    const [cookie, _] = useCookies(['authToken']);
+    const [cookie,] = useCookies(['authToken']);
 
     useEffect(() => {
         getItems(setItems, () => null, cookie);

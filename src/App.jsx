@@ -11,6 +11,7 @@ import LoginPage from "./containers/LoginPage";
 import {CookiesProvider} from 'react-cookie';
 import PrivateRoute from "./components/auth/PrivateRoute";
 import Layout from "./components/Layout";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
     <CookiesProvider>

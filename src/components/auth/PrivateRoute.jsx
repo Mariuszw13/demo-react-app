@@ -4,7 +4,6 @@ import {Route, Redirect} from 'react-router-dom'
 
 const PrivateRoute = ({component: Component, ...rest}) => {
     const [cookies] = useCookies(['authToken']);
-    console.log(cookies.authToken)
     return <Route {...rest} render={props => cookies.authToken ?
         <Component {...props} />
         : <Redirect to="/login"/>}

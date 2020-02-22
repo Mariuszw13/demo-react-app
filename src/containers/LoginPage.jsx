@@ -1,5 +1,5 @@
 import React, {useState, useCallback, useEffect} from 'react'
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap/Button'
 import {tryLogin} from "../services";
 import {useCookies} from 'react-cookie';
 import {useHistory} from "react-router-dom";
@@ -18,7 +18,7 @@ const LoginPage = ({className}) => {
     const onLoginSuccess = useCallback((token) => {
         setCookie("authToken", token, {path: '/'});
         history.push("/");
-    }, []);
+    }, [history, setCookie]);
 
     const handleUserKeyPress = useCallback(event => {
         const {keyCode} = event;
@@ -40,7 +40,6 @@ const LoginPage = ({className}) => {
     };
 
     const onLoginClick = () => {
-        console.log(login)
         tryLogin({username: login, password}, onLoginSuccess, () => null)
     };
 
@@ -60,11 +59,14 @@ const LoginPage = ({className}) => {
                     Password
                 </Form.Label>
                 <Col sm="10">
-                    <Form.Control type="password" placeholder="Password" value={password}
-                                  onChange={handleChange(setPassword)}/>
+                    <Form.Control type="password"
+                                  placeholder="Password"
+                                  value={password}
+                                  onChange={handleChange(setPassword)}
+                    />
                 </Col>
             </Form.Group>
-            <Button className="login-button" variant="contained" color="primary" onClick={onLoginClick}>
+            <Button className="login-button" variant="primary" onClick={onLoginClick}>
                 login
             </Button>
         </Form>)
@@ -80,8 +82,4 @@ export default styled(LoginPage)`
     flex-direction: column;
     align-items: center;
     width: 30vw;
-    
-    .text-field {
-        margin-bottom: 15px;
-    }
 `;
