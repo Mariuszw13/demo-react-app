@@ -16,7 +16,7 @@ export const tryLogin = async (credentials, onSuccess, onFailure) => {
 
 export const getItems = async (onSuccess, token, onFailure = noop) => {
     try {
-        const config = { headers: {"X-Token": token}};
+        const config = {headers: {"X-Token": token}};
         const response = await instance.get("/items", config);
         onSuccess(response.data);
     } catch (e) {
@@ -27,7 +27,7 @@ export const getItems = async (onSuccess, token, onFailure = noop) => {
 
 export const deleteItem = async (onSuccess, token, id, onFailure = noop) => {
     try {
-        const config = { headers: {"X-Token": token}};
+        const config = {headers: {"X-Token": token}};
         const response = await instance.delete(`/items/${id}`, config);
         onSuccess(response.data);
     } catch (e) {
@@ -38,7 +38,7 @@ export const deleteItem = async (onSuccess, token, id, onFailure = noop) => {
 
 export const addItem = async (onSuccess, token, newItem, onFailure = noop) => {
     try {
-        const config = { headers: {"X-Token": token}};
+        const config = {headers: {"X-Token": token}};
         const response = await instance.post("/items", newItem, config);
         onSuccess(response.data);
     } catch (e) {

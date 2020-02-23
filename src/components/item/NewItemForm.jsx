@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -8,21 +8,20 @@ import {ITEM_TYPE} from "../../utils/enums";
 import FormElement from "../FormElement";
 
 const NewItemForm = ({
-                         name, setName,
-                         type, setType,
-                         description, setDescription,
-                         volumeWeight, setVolumeWeight,
-                         price, setPrice,
-                         quantity, setQuantity
+                         name,
+                         type,
+                         setType,
+                         description,
+                         volumeWeight,
+                         price,
+                         quantity,
+                         errorsMap,
+                         handleChange
                      }) => {
-
-    const handleChange = setter => event => {
-        setter(event.target.value)
-    };
-
     return (
         <Form>
-            <FormElement label="Name" controlProps={{value: name, onChange: handleChange(setName)}}/>
+            <FormElement label="Name" error={errorsMap["name"]}
+                         controlProps={{value: name, onChange: handleChange("name")}}/>
             <Form.Group as={Row} controlId="formPlaintextPassword">
                 <Form.Label column sm="2">
                     Type
@@ -37,15 +36,19 @@ const NewItemForm = ({
                     </DropdownButton>
                 </Col>
             </Form.Group>
-            {type === ITEM_TYPE.FOOD && <FormElement label="Description" controlProps={{
+            {type === ITEM_TYPE.FOOD &&
+            <FormElement label="Description" error={errorsMap["description"]} controlProps={{
                 value: description,
-                onChange: handleChange(setDescription),
+                onChange: handleChange("description"),
                 as: "textarea"
             }}/>}
             <FormElement label={type === ITEM_TYPE.FOOD ? "Weight [kg]" : "Volume [l]"}
-                         controlProps={{value: volumeWeight, onChange: handleChange(setVolumeWeight)}}/>
-            <FormElement label="Price [$]" controlProps={{value: price, onChange: handleChange(setPrice)}}/>
-            <FormElement label="Quantity" controlProps={{value: quantity, onChange: handleChange(setQuantity)}}/>
+                         error={errorsMap["volumeWeight"]}
+                         controlProps={{value: volumeWeight, onChange: handleChange("volumeWeight")}}/>
+            <FormElement label="Price [$]" error={errorsMap["price"]}
+                         controlProps={{value: price, onChange: handleChange("price")}}/>
+            <FormElement label="Quantity" error={errorsMap["quantity"]}
+                         controlProps={{value: quantity, onChange: handleChange("quantity")}}/>
         </Form>
     )
 }

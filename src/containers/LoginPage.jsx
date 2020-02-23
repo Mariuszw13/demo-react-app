@@ -66,7 +66,7 @@ const LoginPage = ({className}) => {
                     />
                 </Col>
             </Form.Group>
-            <Button className="login-button" variant="primary" onClick={onLoginClick}>
+            <Button variant="primary" onClick={onLoginClick}>
                 login
             </Button>
         </Form>)
@@ -80,6 +80,5 @@ export default styled(LoginPage)`
     left: calc(50% - 15vw);
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 30vw;
 `;

@@ -6,7 +6,6 @@ import styled from "styled-components";
 import NewItemModal from "../components/item/NewItemModal";
 import Button from "react-bootstrap/Button";
 
-
 const MainPage = ({className}) => {
     const [items, setItems] = useState([]);
     const [modalVisible, setModalVisibility] = useState(false)
@@ -48,7 +47,7 @@ const MainPage = ({className}) => {
             <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem}/>
         </div>
     )
-}
+};
 
 export default styled(MainPage)`
     padding: 10px 10%;

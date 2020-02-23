@@ -9,12 +9,9 @@ const FormElement = ({label, error, controlProps}) => (
             {label}
         </Form.Label>
         <Col sm="10">
-            <Form.Control placeholder={label} {...controlProps}/>
-            <Form.Control.Feedback type="invalid">
-                {error && error}
-            </Form.Control.Feedback>
+            <Form.Control placeholder={label} isValid={String(controlProps.value).length && !error} {...controlProps}/>
         </Col>
     </Form.Group>
-)
+);
 
 export default FormElement;
