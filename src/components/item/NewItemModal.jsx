@@ -14,7 +14,6 @@ const initialState = {
     description: "",
     errorsMap: {},
     isFormValid: false
-
 };
 
 const reducer = (state, action) => {

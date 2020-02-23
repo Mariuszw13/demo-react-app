@@ -3,7 +3,7 @@ import {noop} from "../utils";
 
 const instance = axios.create({baseURL: "https://my-json-server.typicode.com/Mariuszw13/db-mock"});
 
-export const tryLogin = async (credentials, onSuccess, onFailure) => {
+export const tryLogin = async (credentials, onSuccess, onFailure = noop) => {
     try {
         const response = await instance.get("/auth", credentials);
         const token = response.data.token;

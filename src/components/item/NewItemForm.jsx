@@ -51,6 +51,6 @@ const NewItemForm = ({
                          controlProps={{value: quantity, onChange: handleChange("quantity")}}/>
         </Form>
     )
-}
+};
 
 export default NewItemForm;

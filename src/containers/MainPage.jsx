@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 
 const MainPage = ({className}) => {
     const [items, setItems] = useState([]);
-    const [modalVisible, setModalVisibility] = useState(false)
+    const [modalVisible, setModalVisibility] = useState(false);
     const [cookies,] = useCookies(['authToken']);
 
     useEffect(() => {

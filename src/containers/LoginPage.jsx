@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-
+import {ENTER_KEY_CODE} from "../utils/enums";
 
 const LoginPage = ({className}) => {
     const [login, setLogin] = useState("");
@@ -22,7 +22,7 @@ const LoginPage = ({className}) => {
 
     const handleUserKeyPress = useCallback(event => {
         const {keyCode} = event;
-        if (keyCode === 13) {
+        if (keyCode === ENTER_KEY_CODE) {
             tryLogin({username: login, password}, onLoginSuccess, () => null)
         }
     }, [login, onLoginSuccess, password]);
@@ -66,11 +66,16 @@ const LoginPage = ({className}) => {
                     />
                 </Col>
             </Form.Group>
-            <Button variant="primary" onClick={onLoginClick}>
+            <LoginButton variant="primary" onClick={onLoginClick}>
                 login
-            </Button>
+            </LoginButton>
         </Form>)
-}
+};
+
+const LoginButton = styled(Button)`
+    width: 50%;
+    align-self: center;
+`;
 
 export default styled(LoginPage)`
     position: absolute;
@@ -81,4 +86,14 @@ export default styled(LoginPage)`
     display: flex;
     flex-direction: column;
     width: 30vw;
+    
+    @media (max-width: 1500px) {
+        width: 60vw;
+        left: calc(50% - 30vw);
+    }
+    
+    @media (max-width: 750px) {
+        width: 80vw;
+        left: calc(50% - 40vw);
+    }
 `;
