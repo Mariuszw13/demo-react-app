@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import {ITEM_TYPE} from "../../utils/enums";
-import FormElement from "../FormElement";
+import {ITEM_TYPE} from "../../../utils/enums";
+import FormElement from "../../FormElement";
 
 const NewItemForm = ({
                          name,

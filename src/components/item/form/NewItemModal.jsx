@@ -1,7 +1,7 @@
 import React, {useReducer, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import {ITEM_TYPE} from "../../utils/enums";
+import {ITEM_TYPE} from "../../../utils/enums";
 import NewItemForm from "./NewItemForm";
 import {newItemSchema} from "./newItemSchema";
 

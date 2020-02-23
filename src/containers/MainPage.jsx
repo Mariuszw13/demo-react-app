@@ -3,7 +3,7 @@ import {addItem, deleteItem, getItems} from "../services";
 import {useCookies} from "react-cookie";
 import List from "../components/item/list";
 import styled from "styled-components";
-import NewItemModal from "../components/item/NewItemModal";
+import NewItemModal from "../components/item/form/NewItemModal";
 import Button from "react-bootstrap/Button";
 
 const MainPage = ({className}) => {
