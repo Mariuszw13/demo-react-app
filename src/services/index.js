@@ -34,4 +34,15 @@ export const deleteItem = async (onSuccess, token, id, onFailure = noop) => {
         console.log(e);
         onFailure()
     }
-}
+};
+
+export const addItem = async (onSuccess, token, newItem, onFailure = noop) => {
+    try {
+        const config = { headers: {"X-Token": token}};
+        const response = await instance.post("/items", newItem, config);
+        onSuccess(response.data);
+    } catch (e) {
+        console.log(e);
+        onFailure()
+    }
+};
