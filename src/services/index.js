@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {noop} from "../utils";
 
 const instance = axios.create({baseURL: "https://my-json-server.typicode.com/Mariuszw13/db-mock"});
 
@@ -13,7 +14,7 @@ export const tryLogin = async (credentials, onSuccess, onFailure) => {
     }
 };
 
-export const getItems = async (onSuccess, onFailure, token) => {
+export const getItems = async (onSuccess, token, onFailure = noop) => {
     try {
         const config = { headers: {"X-Token": token}};
         const response = await instance.get("/items", config);
@@ -23,3 +24,14 @@ export const getItems = async (onSuccess, onFailure, token) => {
         onFailure();
     }
 };
+
+export const deleteItem = async (onSuccess, token, id, onFailure = noop) => {
+    try {
+        const config = { headers: {"X-Token": token}};
+        const response = await instance.delete(`/items/${id}`, config);
+        onSuccess(response.data);
+    } catch (e) {
+        console.log(e);
+        onFailure()
+    }
+}

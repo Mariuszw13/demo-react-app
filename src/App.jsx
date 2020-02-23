@@ -10,7 +10,7 @@ import MainPage from "./containers/MainPage";
 import LoginPage from "./containers/LoginPage";
 import {CookiesProvider} from 'react-cookie';
 import PrivateRoute from "./components/auth/PrivateRoute";
-import Layout from "./components/Layout";
+import {withLayout} from "./components/Layout";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
@@ -18,11 +18,9 @@ const App = () => (
         <Router>
             <Switch>
                 <Route path="/login" exact component={LoginPage}/>
-                <Layout>
-                    <PrivateRoute exact path="/" component={MainPage}/>
-                </Layout>
+                <PrivateRoute exact path="/" component={withLayout(MainPage)}/>
+                <Redirect from="*" to="/"/>
             </Switch>
-            <Redirect to="/" />
         </Router>
     </CookiesProvider>
 

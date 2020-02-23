@@ -21,20 +21,13 @@ const Layout = ({className, children}) => {
         <>
             <div className={className}>
                 <CenterNavLink to="/">Home</CenterNavLink>
-                <h1>Web App</h1>
+                <AppTitle>Web App</AppTitle>
                 <Button onClick={logout} variant="secondary" size="sm">Log out</Button>
             </div>
             {children}
         </>
     )
-}
-
-export default styled(Layout)`
-    display: flex;
-    justify-content: space-between;
-    background-color: #1E88E5;
-    padding: 10px;
-`;
+};
 
 const CenterNavLink = styled(NavLink)`
     color: white;
@@ -44,3 +37,16 @@ const CenterNavLink = styled(NavLink)`
         color: coral;
     }
 `;
+
+const AppTitle = styled.h1`
+    color: white;
+`;
+
+const StyledLayout = styled(Layout)`
+    display: flex;
+    justify-content: space-between;
+    background-color: #1E88E5;
+    padding: 10px;
+`;
+
+export const withLayout = (Component) => () => <StyledLayout><Component/></StyledLayout>;

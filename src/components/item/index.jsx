@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import {randomFromRange} from "../../utils";
 import ItemValue from "./ItemValue";
 
-const Item = ({type, name, ...rest}) => {
+const Item = ({type, name, id, removeItem, ...rest}) => {
     const componentsMap = {
         [ITEM_TYPE.FOOD]: FoodItem,
         [ITEM_TYPE.DRINK]: DrinkItem
@@ -18,7 +18,7 @@ const Item = ({type, name, ...rest}) => {
             <Card.Body>
                 <Card.Title>{name}</Card.Title>
                 <Component {...rest}/>
-                <Button variant="danger">Remove</Button>
+                <Button variant="danger" onClick={() => removeItem(id)}>Remove</Button>
             </Card.Body>
         </Card>
     )
