@@ -1,13 +1,10 @@
-import React from 'react'
-import {useCookies} from 'react-cookie';
-import {Route, Redirect} from 'react-router-dom'
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { useAuthToken } from "../../login/useAuthToken";
 
-const PrivateRoute = ({component: Component, ...rest}) => {
-    const [cookies] = useCookies(['authToken']);
-    return <Route {...rest} render={props => cookies.authToken ?
-        <Component {...props} />
-        : <Redirect to="/login"/>}
-    />
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const authToken = useAuthToken();
+    return <Route {...rest} render={props => (authToken ? <Component {...props} /> : <Redirect to="/login" />)} />;
 };
 
 export default PrivateRoute;

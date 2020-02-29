@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
-const ItemValue = ({className, children, label, unit}) => (
+const ItemValue = ({ className, children, label, unit }) => (
     <div className={className}>
         <Label>{label}</Label>
         <span>{`${children} ${unit ? unit : ""}`}</span>
@@ -9,7 +9,7 @@ const ItemValue = ({className, children, label, unit}) => (
 );
 
 const Label = styled.span`
-    font-weight: 600
+    font-weight: 600;
 `;
 
 export default styled(ItemValue)`

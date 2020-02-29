@@ -1,9 +1,9 @@
-import React, {useReducer, useEffect} from 'react';
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import {ITEM_TYPE} from "../../../utils/enums";
+import React, { useReducer, useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import { ITEM_TYPE } from "../../../utils/enums";
 import NewItemForm from "./NewItemForm";
-import {newItemSchema} from "./newItemSchema";
+import { validateForm } from "./newItemSchema";
 
 const initialState = {
     name: "",
@@ -13,7 +13,7 @@ const initialState = {
     volumeWeight: "",
     description: "",
     errorsMap: {},
-    isFormValid: false
+    isFormValid: false,
 };
 
 const reducer = (state, action) => {
@@ -21,39 +21,34 @@ const reducer = (state, action) => {
         return initialState;
     }
 
-    const result = {...state};
+    const result = { ...state };
     result[action.type] = action.value;
     return result;
 };
 
-const NewItemModal = ({closeModal, visible, addNewItem}) => {
+const NewItemModal = ({ closeModal, visible, addNewItem }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const {name, type, price, quantity, volumeWeight, description, errorsMap, isFormValid} = state;
+    const { name, type, price, quantity, volumeWeight, description, errorsMap, isFormValid } = state;
 
     useEffect(() => {
-        const validateForm = () => {
-            const resultObject = {
-                name,
-                ...(type === ITEM_TYPE.FOOD ? {description} : {}),
-                volumeWeight,
-                price,
-                quantity
-            };
-            newItemSchema.validate(resultObject, {abortEarly: false, isStrict: false})
-                .then(() => {
-                    setErrorsMap({});
-                    dispatch({type: "isFormValid", value: true})
-                })
-                .catch(err => setErrors(err))
+        const resultObject = {
+            name,
+            ...(type === ITEM_TYPE.FOOD ? { description } : {}),
+            volumeWeight,
+            price,
+            quantity,
+        };
+        const onValidationSuccess = () => {
+            setErrorsMap({});
+            dispatch({ type: "isFormValid", value: true });
         };
 
         const setErrors = error => {
             const errorsMap = {};
-            error.inner.forEach(err => errorsMap[err.path] = err.message);
-            setErrorsMap(errorsMap)
+            error.inner.forEach(err => (errorsMap[err.path] = err.message));
+            setErrorsMap(errorsMap);
         };
-
-        validateForm();
+        validateForm(resultObject, onValidationSuccess, err => setErrors(err));
     }, [name, type, price, quantity, volumeWeight, description]);
 
     const submitNewItem = () => {
@@ -61,9 +56,9 @@ const NewItemModal = ({closeModal, visible, addNewItem}) => {
             const newItem = {
                 name,
                 type,
-                ...(type === ITEM_TYPE.FOOD ? {description, weight: volumeWeight} : {volume: volumeWeight}),
+                ...(type === ITEM_TYPE.FOOD ? { description, weight: volumeWeight } : { volume: volumeWeight }),
                 price,
-                quantity
+                quantity,
             };
             addNewItem(newItem);
             closeAndClear();
@@ -71,7 +66,7 @@ const NewItemModal = ({closeModal, visible, addNewItem}) => {
     };
 
     const clearState = () => {
-        dispatch({type: "reset"});
+        dispatch({ type: "reset" });
     };
 
     const closeAndClear = () => {
@@ -80,15 +75,15 @@ const NewItemModal = ({closeModal, visible, addNewItem}) => {
     };
 
     const handleChange = name => event => {
-        dispatch({type: name, value: event.target.value});
+        dispatch({ type: name, value: event.target.value });
     };
 
     const setErrorsMap = errorsMap => {
-        dispatch({type: "errorsMap", value: errorsMap})
+        dispatch({ type: "errorsMap", value: errorsMap });
     };
 
     const setType = type => {
-        dispatch({type: "type", value: type})
+        dispatch({ type: "type", value: type });
     };
 
     const formProps = {
@@ -100,7 +95,7 @@ const NewItemModal = ({closeModal, visible, addNewItem}) => {
         price,
         quantity,
         errorsMap,
-        handleChange
+        handleChange,
     };
 
     return (
@@ -110,15 +105,19 @@ const NewItemModal = ({closeModal, visible, addNewItem}) => {
             </Modal.Header>
 
             <Modal.Body>
-                <NewItemForm {...formProps}/>
+                <NewItemForm {...formProps} />
             </Modal.Body>
 
             <Modal.Footer>
-                <Button variant="secondary" onClick={closeAndClear}>Close</Button>
-                <Button variant="primary" disabled={!isFormValid} onClick={submitNewItem}>Add</Button>
+                <Button variant="secondary" onClick={closeAndClear}>
+                    Close
+                </Button>
+                <Button variant="primary" disabled={!isFormValid} onClick={submitNewItem}>
+                    Add
+                </Button>
             </Modal.Footer>
         </Modal>
-    )
+    );
 };
 
 export default NewItemModal;
