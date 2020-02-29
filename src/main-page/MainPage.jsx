@@ -41,7 +41,7 @@ const MainPage = ({ className }) => {
         <div className={className}>
             <Button onClick={openModal}>Add new item</Button>
             <List items={items} removeItem={removeItem} />
-            <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem} />
+            <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem} itemsLength={items.length} />
         </div>
     );
 };

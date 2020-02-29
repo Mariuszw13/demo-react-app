@@ -5,6 +5,7 @@ import { ITEM_TYPE } from "../../../utils/enums";
 import NewItemForm from "./NewItemForm";
 import { validateForm } from "./newItemSchema";
 import * as PropTypes from "prop-types";
+import { randomFromRange } from "../../../utils";
 
 const initialState = {
     name: "",
@@ -27,7 +28,7 @@ const reducer = (state, action) => {
     return result;
 };
 
-const NewItemModal = ({ closeModal, visible, addNewItem }) => {
+const NewItemModal = ({ closeModal, visible, addNewItem, itemsLength }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { name, type, price, quantity, volumeWeight, description, errorsMap, isFormValid } = state;
 
@@ -55,6 +56,7 @@ const NewItemModal = ({ closeModal, visible, addNewItem }) => {
     const submitNewItem = () => {
         if (isFormValid) {
             const newItem = {
+                id: itemsLength + 1,
                 name,
                 type,
                 ...(type === ITEM_TYPE.FOOD ? { description, weight: volumeWeight } : { volume: volumeWeight }),
@@ -127,4 +129,5 @@ NewItemModal.propTypes = {
     closeModal: PropTypes.func,
     visible: PropTypes.bool,
     addNewItem: PropTypes.func,
+    itemsLength: PropTypes.number,
 };
