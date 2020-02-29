@@ -5,7 +5,6 @@ import { ITEM_TYPE } from "../../../utils/enums";
 import NewItemForm from "./NewItemForm";
 import { validateForm } from "./newItemSchema";
 import * as PropTypes from "prop-types";
-import { randomFromRange } from "../../../utils";
 
 const initialState = {
     name: "",
@@ -59,9 +58,11 @@ const NewItemModal = ({ closeModal, visible, addNewItem, itemsLength }) => {
                 id: itemsLength + 1,
                 name,
                 type,
-                ...(type === ITEM_TYPE.FOOD ? { description, weight: volumeWeight } : { volume: volumeWeight }),
-                price,
-                quantity,
+                ...(type === ITEM_TYPE.FOOD
+                    ? { description, weight: Number.parseFloat(volumeWeight) }
+                    : { volume: Number.parseFloat(volumeWeight) }),
+                price: Number.parseFloat(price),
+                quantity: Number.parseInt(quantity),
             };
             addNewItem(newItem);
             closeAndClear();

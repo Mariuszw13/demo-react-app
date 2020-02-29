@@ -17,7 +17,12 @@ const MainPage = ({ className }) => {
     }, [authToken]);
 
     const removeItem = id => {
-        deleteItem(onDeleteSuccess(id), authToken, id);
+        // due to mocked api, there are 5 mocked items
+        if (id < 6) {
+            deleteItem(onDeleteSuccess(id), authToken, id);
+        } else {
+            onDeleteSuccess(id)();
+        }
     };
 
     const addNewItem = newItem => {
