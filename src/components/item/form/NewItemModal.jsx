@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { ITEM_TYPE } from "../../../utils/enums";
 import NewItemForm from "./NewItemForm";
 import { validateForm } from "./newItemSchema";
+import * as PropTypes from "prop-types";
 
 const initialState = {
     name: "",
@@ -121,3 +122,9 @@ const NewItemModal = ({ closeModal, visible, addNewItem }) => {
 };
 
 export default NewItemModal;
+
+NewItemModal.propTypes = {
+    closeModal: PropTypes.func,
+    visible: PropTypes.bool,
+    addNewItem: PropTypes.func,
+};

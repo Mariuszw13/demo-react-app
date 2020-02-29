@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import * as PropTypes from "prop-types";
 
 const Layout = ({ className, children }) => {
     const history = useHistory();
@@ -29,6 +30,11 @@ const Layout = ({ className, children }) => {
             {children}
         </>
     );
+};
+
+Layout.propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
 };
 
 const CenterNavLink = styled(NavLink)`

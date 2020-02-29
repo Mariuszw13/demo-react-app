@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ENTER_KEY_CODE } from "../utils/enums";
+import * as PropTypes from "prop-types";
 
 const LoginPage = ({ className }) => {
     const [login, setLogin] = useState("");
@@ -73,6 +74,10 @@ const LoginPage = ({ className }) => {
             </LoginButton>
         </Form>
     );
+};
+
+LoginPage.propTypes = {
+    className: PropTypes.string
 };
 
 const LoginButton = styled(Button)`

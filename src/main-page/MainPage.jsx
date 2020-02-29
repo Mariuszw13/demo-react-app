@@ -5,6 +5,7 @@ import styled from "styled-components";
 import NewItemModal from "../components/item/form/NewItemModal";
 import Button from "react-bootstrap/Button";
 import { useAuthToken } from "../login/useAuthToken";
+import * as PropTypes from "prop-types";
 
 const MainPage = ({ className }) => {
     const [items, setItems] = useState([]);
@@ -24,12 +25,8 @@ const MainPage = ({ className }) => {
     };
 
     const onDeleteSuccess = id => () => {
-        const newArr = [...items];
-        const index = newArr.findIndex(item => item.id === id);
-        if (index > -1) {
-            newArr.splice(index, 1);
-            setItems(newArr);
-        }
+        const newArr = items.filter(item => item.id !== id);
+        setItems(newArr);
     };
 
     const onAddSuccess = newItem => () => {
@@ -47,6 +44,10 @@ const MainPage = ({ className }) => {
             <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem} />
         </div>
     );
+};
+
+MainPage.propTypes = {
+    className: PropTypes.string,
 };
 
 export default styled(MainPage)`

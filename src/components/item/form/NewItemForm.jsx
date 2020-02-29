@@ -6,6 +6,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { ITEM_TYPE } from "../../../utils/enums";
 import FormElement from "../../FormElement";
+import * as PropTypes from "prop-types";
 
 const NewItemForm = ({ name, type, setType, description, volumeWeight, price, quantity, errorsMap, handleChange }) => {
     return (
@@ -49,6 +50,18 @@ const NewItemForm = ({ name, type, setType, description, volumeWeight, price, qu
             />
         </Form>
     );
+};
+
+NewItemForm.propTypes = {
+    name: PropTypes.string,
+    type: PropTypes.string,
+    setType: PropTypes.func,
+    description: PropTypes.string,
+    volumeWeight: PropTypes.string,
+    price: PropTypes.string,
+    quantity: PropTypes.number,
+    errorsMap: PropTypes.object,
+    handleChange: PropTypes.func,
 };
 
 export default NewItemForm;
