@@ -27,7 +27,7 @@ const reducer = (state, action) => {
     return result;
 };
 
-const NewItemModal = ({ closeModal, visible, addNewItem, itemsLength }) => {
+const NewItemModal = ({ closeModal, visible, addNewItem, lastAddedIndex }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
     const { name, type, price, quantity, volumeWeight, description, errorsMap, isFormValid } = state;
 
@@ -48,6 +48,7 @@ const NewItemModal = ({ closeModal, visible, addNewItem, itemsLength }) => {
             const errorsMap = {};
             error.inner.forEach(err => (errorsMap[err.path] = err.message));
             setErrorsMap(errorsMap);
+            dispatch({ type: "isFormValid", value: false });
         };
         validateForm(resultObject, onValidationSuccess, err => setErrors(err));
     }, [name, type, price, quantity, volumeWeight, description]);
@@ -55,7 +56,7 @@ const NewItemModal = ({ closeModal, visible, addNewItem, itemsLength }) => {
     const submitNewItem = () => {
         if (isFormValid) {
             const newItem = {
-                id: itemsLength + 1,
+                id: lastAddedIndex + 1,
                 name,
                 type,
                 ...(type === ITEM_TYPE.FOOD
@@ -130,5 +131,5 @@ NewItemModal.propTypes = {
     closeModal: PropTypes.func,
     visible: PropTypes.bool,
     addNewItem: PropTypes.func,
-    itemsLength: PropTypes.number,
+    lastAddedIndex: PropTypes.number
 };

@@ -9,6 +9,7 @@ import * as PropTypes from "prop-types";
 
 const MainPage = ({ className }) => {
     const [items, setItems] = useState([]);
+    const [lastAddedIndex, setLastAddedIndex] = useState(6);
     const [modalVisible, setModalVisibility] = useState(false);
     const authToken = useAuthToken();
 
@@ -36,6 +37,7 @@ const MainPage = ({ className }) => {
 
     const onAddSuccess = newItem => () => {
         const newArr = [...items, newItem];
+        setLastAddedIndex(newItem.id);
         setItems(newArr);
     };
 
@@ -46,7 +48,7 @@ const MainPage = ({ className }) => {
         <div className={className}>
             <Button onClick={openModal}>Add new item</Button>
             <List items={items} removeItem={removeItem} />
-            <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem} itemsLength={items.length} />
+            <NewItemModal visible={modalVisible} closeModal={closeModal} addNewItem={addNewItem} lastAddedIndex={lastAddedIndex} />
         </div>
     );
 };

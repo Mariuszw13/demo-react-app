@@ -1,7 +1,11 @@
 import * as yup from "yup";
 
 const newItemSchema = yup.object().shape({
-    name: yup.string().required(),
+    name: yup
+        .string()
+        .required()
+        .ensure()
+        .min(1),
     description: yup
         .string()
         .max(200, "Description is too long")
