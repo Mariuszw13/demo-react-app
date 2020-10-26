@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainPage /> should render properly and match snapshot 1`] = `
+<div
+  class="sc-AxhCb duPdoD"
+>
+  <button
+    class="btn btn-primary"
+    type="button"
+  >
+    Add new item
+  </button>
+  <div
+    class="card-columns"
+  >
+    <div
+      class="card"
+    >
+      <img
+        class="card-img-top"
+        src="https://picsum.photos/id/21/400"
+      />
+      <div
+        class="card-body"
+      >
+        <div
+          class="card-title h5"
+        >
+          item one
+        </div>
+        <p
+          class="card-text"
+        />
+        <div
+          class="sc-AxiKw iSgsng"
+        >
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Weight
+            </span>
+            <span>
+              undefined kg
+            </span>
+          </div>
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Price
+            </span>
+            <span>
+              undefined $
+            </span>
+          </div>
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Quantity
+            </span>
+            <span>
+              undefined 
+            </span>
+          </div>
+        </div>
+        <button
+          class="btn btn-danger"
+          type="button"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+    <div
+      class="card"
+    >
+      <img
+        class="card-img-top"
+        src="https://picsum.photos/id/22/400"
+      />
+      <div
+        class="card-body"
+      >
+        <div
+          class="card-title h5"
+        >
+          item two
+        </div>
+        <div
+          class="sc-AxiKw iSgsng"
+        >
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Volume
+            </span>
+            <span>
+              undefined l
+            </span>
+          </div>
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Price
+            </span>
+            <span>
+              undefined $
+            </span>
+          </div>
+          <div
+            class="sc-AxirZ ktRBae"
+          >
+            <span
+              class="sc-AxjAm eNShYM"
+            >
+              Quantity
+            </span>
+            <span>
+              undefined 
+            </span>
+          </div>
+        </div>
+        <button
+          class="btn btn-danger"
+          type="button"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

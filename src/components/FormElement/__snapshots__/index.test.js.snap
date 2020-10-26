@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormElement /> should render properly and match snapshot 1`] = `
+<div
+  class="form-group row"
+>
+  <label
+    class="form-label col-form-label col-sm-2"
+  >
+    test label
+  </label>
+  <div
+    class="col-sm-10"
+  >
+    <input
+      class="form-control is-valid"
+      placeholder="test label"
+    />
+  </div>
+</div>
+`;

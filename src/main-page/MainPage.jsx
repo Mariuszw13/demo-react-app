@@ -43,7 +43,7 @@ const MainPage = ({ className }) => {
 
     const openModal = () => setModalVisibility(true);
     const closeModal = () => setModalVisibility(false);
-
+    
     return (
         <div className={className}>
             <Button onClick={openModal}>Add new item</Button>
