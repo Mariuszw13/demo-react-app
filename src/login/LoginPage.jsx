@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ENTER_KEY_CODE } from "../utils/enums";
 import * as PropTypes from "prop-types";
+import MessageBox from "../components/MessageBox";
 
 const LoginPage = ({ className }) => {
     const [login, setLogin] = useState("");
@@ -51,33 +52,36 @@ const LoginPage = ({ className }) => {
     };
 
     return (
-        <Form className={className}>
-            <Form.Group as={Row}>
-                <Form.Label column sm="2">
-                    Email
-                </Form.Label>
-                <Col sm="10">
-                    <Form.Control type="email" placeholder="email" value={login} onChange={handleChange(setLogin)} />
-                </Col>
-            </Form.Group>
+        <>
+            <MessageBox title="Welcome!" text="Welcome to the Demo React App. You can login using any credentials." />
+            <Form className={className}>
+                <Form.Group as={Row}>
+                    <Form.Label column sm="2">
+                        Email
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="email" placeholder="email" value={login} onChange={handleChange(setLogin)} />
+                    </Col>
+                </Form.Group>
 
-            <Form.Group as={Row} controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
-                    Password
-                </Form.Label>
-                <Col sm="10">
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={handleChange(setPassword)} />
-                </Col>
-            </Form.Group>
-            <LoginButton variant="primary" onClick={onLoginClick}>
-                login
-            </LoginButton>
-        </Form>
+                <Form.Group as={Row} controlId="formPlaintextPassword">
+                    <Form.Label column sm="2">
+                        Password
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={handleChange(setPassword)} />
+                    </Col>
+                </Form.Group>
+                <LoginButton variant="primary" onClick={onLoginClick}>
+                    login
+                </LoginButton>
+            </Form>
+        </>
     );
 };
 
 LoginPage.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
 };
 
 const LoginButton = styled(Button)`

@@ -1,3 +1,5 @@
+This project was made in order to have demo react app and to play with react hooks. I also wanted to test out react-bootstrap package as I have never used it before. The API used by this app is mocked. App is deployed on github pages and you can check it out [here.](https://mariuszw13.github.io/demo-react-app)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
